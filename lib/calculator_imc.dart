@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:taller1_2/views.dart';
 
 class CalculatorIMC extends StatefulWidget {
   const CalculatorIMC({super.key});
@@ -33,6 +35,30 @@ class _CalculatorIMCState extends State<CalculatorIMC> {
     }
   }
 
+  Row buttonsNav() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        ElevatedButton(
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const Pagina1()));
+          },
+          child: const Text('¿Qué es IMC?'),
+        ),
+        ElevatedButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(Colors.red),
+          ),
+          onPressed: () {
+            SystemNavigator.pop();
+          },
+          child: const Text('Cerrar App'),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,6 +69,7 @@ class _CalculatorIMCState extends State<CalculatorIMC> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            buttonsNav(),
             Container(
               margin: const EdgeInsets.only(
                 bottom: 20,
